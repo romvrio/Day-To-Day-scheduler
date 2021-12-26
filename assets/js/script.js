@@ -16,3 +16,12 @@ var userText9 = document.querySelector("#user-text-16");
 var userSaveBtn9 = document.querySelector("#user-save-Btn-16");
 var userText9 = document.querySelector("#user-text-17");
 var userSaveBtn9 = document.querySelector("#user-save-Btn-17");
+var currentDate = moment().format("MMM Do YYYY, h:mm:ss a");
+
+// displays current date
+var currentDateDisplay = function () {
+    document.getElementById("currentDay").innerText = currentDate;
+}
+currentDateDisplay();
+
+
