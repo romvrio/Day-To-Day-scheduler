@@ -42,24 +42,27 @@ var changeColor = function () {
     //have the color change depending on the Current time 
     var currentTime = moment().hours();
     // if the current time is eagual to true OR fals then put in the console.
-    if (currentTime === "true") {
+    if (currentTime === true) {
         console.log("This is current time")
     } else (
         console.log("this is NOT the current time")
     )
 
-    $("user-text").each(function () {
-        var checkTime = parseInt($(this).attr("class"));
+    $(".hour").each(function () {
+        console.log($(this).text());
+
+        var hourString = $(this).text();
+        var checkTime = moment(hourString, "hha");
         console.log(checkTime);
 
-        if (currentTime > checkTime) {
+        if (currentTime = moment().isSameOrAfter(checkTime, "hour")) {
             $(this).removeClass("present");
             $(this).removeClass("past");
             $(this).addClass("future");
-        } else (currentTime < checkTime); {
+        } else if (currentTime = moment().isSameOrBefore(checkTime, "hour")) {
             $(this).removeClass("present");
             $(this).removeClass("future");
-            $(this).addClass("pass");
+            $(this).addClass("past");
         } else {
             $(this).removeClass("future");
             $(this).removeClass("past");
