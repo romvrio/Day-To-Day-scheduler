@@ -1,24 +1,26 @@
-var userText9 = document.querySelector("#user-text-9");
-var userSaveBtn9 = document.querySelector("#user-save-Btn9");
-var userText9 = document.querySelector("#user-text-10");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-10");
-var userText9 = document.querySelector("#user-text-11");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-11");
-var userText9 = document.querySelector("#user-text-12");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-12");
-var userText9 = document.querySelector("#user-text-13");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-13");
-var userText9 = document.querySelector("#user-text-14");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-14");
-var userText9 = document.querySelector("#user-text-15");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-15");
-var userText9 = document.querySelector("#user-text-16");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-16");
-var userText9 = document.querySelector("#user-text-17");
-var userSaveBtn9 = document.querySelector("#user-save-Btn-17");
+//Might not need to use for anything atm
+// var userText9 = document.querySelector("#user-text-9");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn9");
+// var userText9 = document.querySelector("#user-text-10");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-10");
+// var userText9 = document.querySelector("#user-text-11");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-11");
+// var userText9 = document.querySelector("#user-text-12");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-12");
+// var userText9 = document.querySelector("#user-text-13");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-13");
+// var userText9 = document.querySelector("#user-text-14");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-14");
+// var userText9 = document.querySelector("#user-text-15");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-15");
+// var userText9 = document.querySelector("#user-text-16");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-16");
+// var userText9 = document.querySelector("#user-text-17");
+// var userSaveBtn9 = document.querySelector("#user-save-Btn-17");
 var currentDate = moment().format("MMM Do YYYY, h:mm:ss a");
 
-
+var userEntry;
+var hourTime;
 // displays current date
 var currentDateDisplay = function () {
     document.getElementById("currentDay").innerText = currentDate;
@@ -47,19 +49,19 @@ var changeColor = function () {
     } else (
         console.log("this is NOT the current time")
     )
-
+    //connct to the hour class
     $(".hour").each(function () {
         console.log($(this).text());
-
+        //
         var hourString = $(this).text();
         var checkTime = moment(hourString, "hha");
         console.log(checkTime);
-
-        if (currentTime = moment().isSameOrAfter(checkTime, "hour")) {
+        //check if the current time is current/ then cjange the class depending on if it is or not
+        if (currentTime <= moment().isSameOrAfter(checkTime, "hour")) {
             $(this).removeClass("present");
             $(this).removeClass("past");
             $(this).addClass("future");
-        } else if (currentTime = moment().isSameOrBefore(checkTime, "hour")) {
+        } else if (currentTime >= moment().isSameOrBefore(checkTime, "hour")) {
             $(this).removeClass("present");
             $(this).removeClass("future");
             $(this).addClass("past");
@@ -71,4 +73,13 @@ var changeColor = function () {
     })
 };
 
+$(".saveBtn").click(function () {
+    userEntry = $(this).addClass("user-text").val();
+    console.log(userEntry);
+    hourTime = $(this).addClass("hour").text();
+    console.log(hourTime);
+    localStorage.setItem(hourTime, JSON.stringify(userEntry));
+
+    changeColor();
+})
 
